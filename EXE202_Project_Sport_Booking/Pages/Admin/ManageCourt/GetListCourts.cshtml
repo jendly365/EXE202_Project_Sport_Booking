@@ -1,5 +1,7 @@
 ﻿@page
-@model EXE202_Project_Sport_Booking.Pages.Owner.GetListCourtModel
+@model EXE202_Project_Sport_Booking.Pages.Admin.ManageCourt.GetListCourtsModel
+@{
+}
 
 
 <div class="wrapper">
@@ -41,13 +43,14 @@
                         else
                         {
                             <div class="court-location">
-                                <span>Chưa có thông tin vị trí</span>
+                                <span>Chưa có thông tin vị trí trên Google Maps</span>
                             </div>
                         }
 
                         <!-- Hành động -->
                         <div class="court-actions">
-                            <a href="@Url.Page("EditCourt", new { id = court.CourtId })" class="btn btn-warning btn-sm">Sửa</a>
+                            <a href="@Url.Page("ViewDetailCourt", new { id = court.CourtId })" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                            <a href="@Url.Page("UpdateCourt", new { id = court.CourtId })" class="btn btn-warning btn-sm">Sửa</a>
                             <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-court-id="@court.CourtId">Xóa</a>
                         </div>
                     </div>
@@ -69,7 +72,7 @@
     function confirmDelete(event, id) {
         event.preventDefault();
         if (confirm('Bạn có chắc chắn muốn xóa sân này?')) {
-            window.location.href = '@Url.Page("DeleteCourt")/' + id;
+            window.location.href = '@Url.Page("/Admin/ManageCourt/DeleteCourt")/' + id;
         }
     }
 </script>
