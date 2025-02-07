@@ -1,0 +1,159 @@
+﻿@page
+@model EXE202_Project_Sport_Booking.Pages.FormLogin.SignupModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(https://suachualaptop24h.com/upload_images/images/2024/08/06/hinh-nen-san-bong-dep-banner.jpg) no-repeat center center/cover;
+            position: relative;
+        }
+
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+        .signup-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+            .signup-container h2 {
+                margin-bottom: 20px;
+                color: #2c5f2d;
+                font-size: 30px;
+            }
+
+            .signup-container .input-container {
+                position: relative;
+                text-align: left;
+            }
+
+            .signup-container input {
+                width: 100%;
+                padding: 12px;
+                margin: 5px 0;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                font-size: 16px;
+            }
+
+            .signup-container .error-message {
+                color: red;
+                font-size: 14px;
+                margin-top: 3px;
+                display: block;
+            }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background: #228b22;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+            .signup-container button:hover {
+                background: #1c6b1c;
+            }
+
+        .signup-container .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+            .signup-container .login-link a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .signup-container .login-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+    <script>
+        function togglePassword(id) {
+            var input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            <div class="input-container">
+                <input type="text" asp-for="FullName" placeholder="Full Name">
+                <span class="error-message" asp-validation-for="FullName"></span>
+            </div>
+
+            <div class="input-container">
+                <input type="email" asp-for="Email" placeholder="Email">
+                <span class="error-message" asp-validation-for="Email"></span>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="password" asp-for="Password" placeholder="Password">
+                <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+                <span class="error-message" asp-validation-for="Password"></span>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="repassword" asp-for="RePassword" placeholder="Confirm Password">
+                <span class="toggle-password" onclick="togglePassword('repassword')">👁️</span>
+                <span class="error-message" asp-validation-for="RePassword"></span>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="/FormLogin/Login">Login</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>
