@@ -1,0 +1,182 @@
+﻿@page
+@model EXE202_Project_Sport_Booking.Pages.FormLogin.VerifyModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(https://suachualaptop24h.com/upload_images/images/2024/08/06/hinh-nen-san-bong-dep-banner.jpg) no-repeat center center/cover;
+            position: relative;
+        }
+
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+        .verify-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+            .verify-container h2 {
+                margin-bottom: 20px;
+                color: #2c5f2d;
+                font-size: 28px;
+            }
+
+            .verify-container label {
+                display: block;
+                font-weight: bold;
+                text-align: left;
+                margin: 10px 0 5px;
+            }
+
+            .verify-container input {
+                width: 100%;
+                padding: 12px;
+                margin: 5px 0 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .verify-container button {
+                width: 100%;
+                padding: 12px;
+                background: #228b22;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 10px;
+                transition: background 0.3s;
+            }
+
+                .verify-container button:hover {
+                    background: #1c6b1c;
+                }
+
+            .verify-container .resend-container {
+                margin-top: 10px;
+                font-size: 14px;
+                color: #555;
+            }
+
+        #resendBtn {
+            background: #ff6347;
+            font-size: 14px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 5px;
+            width: 100%;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+            #resendBtn:disabled {
+                background: #ccc;
+                cursor: not-allowed;
+            }
+
+            #resendBtn:hover:not(:disabled) {
+                background: #d32f2f;
+            }
+
+        .verify-container .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+            .verify-container .login-link a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .verify-container .login-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+    <script>
+        let countdown = 30;
+        let resendBtn = document.getElementById("resendBtn");
+        let countdownSpan = document.getElementById("countdown");
+
+        function startCountdown() {
+            let interval = setInterval(() => {
+                countdown--;
+                countdownSpan.textContent = countdown;
+
+                if (countdown === 0) {
+                    clearInterval(interval);
+                    resendBtn.disabled = false;
+                    resendBtn.textContent = "Resend Code";
+                }
+            }, 1000);
+        }
+
+        function resendOTP() {
+            fetch('/FormLogin/Verify?handler=ResendOTP', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        alert("A new OTP has been sent to your email.");
+                        countdown = 30;
+                        resendBtn.disabled = true;
+                        resendBtn.textContent = "Resend Code (30s)";
+                        startCountdown();
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            startCountdown();
+        });
+    </script>
+</head>
+<body>
+    <div class="verify-container">
+        <h2>Verify Your Email</h2>
+        <form method="post">
+            <label>Email</label>
+            <input type="email" asp-for="Email" readonly />
+
+            <label>OTP Code</label>
+            <input type="text" asp-for="OTP" required />
+
+            <button type="submit">Verify</button>
+        </form>
+
+        <div class="resend-container">
+            <button id="resendBtn" onclick="resendOTP()" disabled>Resend Code (<span id="countdown">30</span>s)</button>
+        </div>
+
+        <div class="login-link">
+            Already have an account? <a href="/FormLogin/Login">Login</a>
+        </div>
+    </div>
+</body>
+</html>
