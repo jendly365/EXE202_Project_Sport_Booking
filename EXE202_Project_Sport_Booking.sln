@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXE202_Project_Sport_Booking", "EXE202_Project_Sport_Booking\EXE202_Project_Sport_Booking.csproj", "{E4D678F3-7026-49B4-A6D1-5B6FD5B8D7CD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetCoreMvcFull", "..\sneat-bootstrap-html-aspnet-core-mvc-admin-template-free\AspnetCoreMvcFull.csproj", "{E3110B68-1408-4FD6-9830-E691890A22FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E4D678F3-7026-49B4-A6D1-5B6FD5B8D7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4D678F3-7026-49B4-A6D1-5B6FD5B8D7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4D678F3-7026-49B4-A6D1-5B6FD5B8D7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3110B68-1408-4FD6-9830-E691890A22FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3110B68-1408-4FD6-9830-E691890A22FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3110B68-1408-4FD6-9830-E691890A22FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3110B68-1408-4FD6-9830-E691890A22FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
