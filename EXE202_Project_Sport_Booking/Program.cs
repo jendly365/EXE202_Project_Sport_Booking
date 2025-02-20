@@ -35,6 +35,9 @@ builder.Services.AddControllersWithViews()
 //    options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
 //});
 // Thêm dịch vụ session
+
+builder.Services.AddDbContext<EXE201_Rental_Sport_FieldContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("value")));
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -74,7 +77,11 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapRazorPages();
+	endpoints.MapFallbackToPage("/Customers/HomePage"); // Đặt trang mặc định là Customers/HomePage
+});
 app.MapRazorPages();
 
 app.Run();

@@ -7,6 +7,7 @@ namespace EXE202_Project_Sport_Booking.Models
 {
     public partial class EXE201_Rental_Sport_FieldContext : DbContext
     {
+
         public EXE201_Rental_Sport_FieldContext()
         {
         }
@@ -84,6 +85,9 @@ namespace EXE202_Project_Sport_Booking.Models
                 entity.Property(e => e.CourtDescription).HasMaxLength(255);
 
                 entity.Property(e => e.CourtName).HasMaxLength(200);
+                entity.Property(e => e.StartTime).HasColumnType("datetime");
+                entity.Property(e => e.EndTime).HasColumnType("datetime");
+
 
                 entity.Property(e => e.ImageUrl)
                     .HasMaxLength(255)
@@ -91,7 +95,6 @@ namespace EXE202_Project_Sport_Booking.Models
 
                 entity.Property(e => e.Status).HasMaxLength(200);
 
-                entity.Property(e => e.TimeSlot).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 

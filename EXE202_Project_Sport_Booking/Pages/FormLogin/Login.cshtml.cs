@@ -54,7 +54,7 @@ namespace EXE202_Project_Sport_Booking.Pages.FormLogin
                 {
                     1 => RedirectToPage("/Admin/Dashboard"),          // Admin Page
                     2 => RedirectToPage("/Manager/Home"),             // Manager Page
-                    3 => RedirectToPage("/Index"),            // Customer Page
+                    3 => RedirectToPage("/Customers/HomePage"),            // Customer Page
                     4 => RedirectToPage("/Staff/Home"),               // Staff Page
                     5 => RedirectToPage("/Owner/Home"),               // Owner Page
                     6 => RedirectToPage("/BookingManager/Home"),      // Booking Manager Page
@@ -69,6 +69,8 @@ namespace EXE202_Project_Sport_Booking.Pages.FormLogin
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return Page();
         }
+
+
 
         public void OnGet()
         {
