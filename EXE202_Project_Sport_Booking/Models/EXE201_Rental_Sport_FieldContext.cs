@@ -27,11 +27,10 @@ namespace EXE202_Project_Sport_Booking.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-2N5GN50\n;Initial Catalog=EXE201_Rental_Sport_Field;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
-            }
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+            if (!optionsBuilder.IsConfigured) { optionsBuilder.UseSqlServer(config.GetConnectionString("value")); }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -86,15 +85,13 @@ namespace EXE202_Project_Sport_Booking.Models
 
                 entity.Property(e => e.CourtName).HasMaxLength(200);
 
-                entity.Property(e => e.EndTime).HasColumnType("datetime");
-
                 entity.Property(e => e.ImageUrl)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StartTime).HasColumnType("datetime");
-
                 entity.Property(e => e.Status).HasMaxLength(200);
+
+                entity.Property(e => e.TimeSlot).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
